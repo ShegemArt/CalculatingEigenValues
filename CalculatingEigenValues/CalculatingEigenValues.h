@@ -174,7 +174,7 @@ vector<double> QR_algorithm(Matrix A, int n, double tol, int max_iter = 100000) 
                 H.numbersMatrix[i][i] -= mu;
 
             Matrix Q = Matrix::MakeIdentityMatrix(m);
-            Matrix R = H;
+            Matrix R = H.SubMatrix(m);
 
             givensQR(Q, R, m);
 
