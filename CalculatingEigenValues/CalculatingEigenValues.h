@@ -6,7 +6,16 @@
 #include "../External/Matrix/Matrix/LinearSystemSolve.h"
 using namespace std;
 
-
+/// <summary>
+/// Ищет максимальное собственное число матрицы и соответствующий вектор 
+/// с помощью прямого степенного метода
+/// </summary>
+/// <param name="eigenvalue">Собственное число</param>
+/// <param name="x">Собственный вектор</param>
+/// <param name="A">Матрица</param>
+/// <param name="n">Размерность</param>
+/// <param name="tol">Точность</param>
+/// <param name="max_iter">Максимальное исло итераций</param>
 void powerMethod(double& eigenvalue, Vector& x, Matrix A, int n, double tol, int max_iter = 100000) {
     Vector x_old(n);
 
@@ -38,7 +47,16 @@ void powerMethod(double& eigenvalue, Vector& x, Matrix A, int n, double tol, int
     eigenvalue = num / den;
 }
 
-
+/// <summary>
+/// Ищет максимальное собственное число матрицы и соответствующий вектор 
+/// с помощью обратного степенного метода 
+/// </summary>
+/// <param name="sigma">Первое приближение</param>
+/// <param name="x">Собственный вектор</param>
+/// <param name="A">Матрица</param>
+/// <param name="n">Размерность</param>
+/// <param name="tol">Точность</param>
+/// <param name="max_iter">Максимальное исло итераций</param>ы
 void inversePowerMethod(double& sigma, Vector& x, Matrix A, int n, double tol, int max_iter = 100000) {
     Matrix I = Matrix::MakeIdentityMatrix(n);
 
@@ -77,7 +95,12 @@ void inversePowerMethod(double& sigma, Vector& x, Matrix A, int n, double tol, i
     }
 }
 
-
+/// <summary>
+/// Приводит матрицу к форме Хессенберга
+/// </summary>
+/// <param name="A">Матрица</param>
+/// <param name="n">Размерность</param>
+/// <returns></returns>
 Matrix toHessenberg(Matrix A, int n) {
     Matrix H = A;
 
@@ -119,7 +142,12 @@ Matrix toHessenberg(Matrix A, int n) {
     return H;
 }
 
-
+/// <summary>
+/// Выполняет шаг QR алгоритма
+/// </summary>
+/// <param name="Q">Матрица Q, ортогональная</param>
+/// <param name="R">Матрица R, правая треуголная матрица</param>
+/// <param name="n">Размерность</param>
 void givensQR(Matrix& Q, Matrix& R, int n) {
     Q = Matrix::MakeIdentityMatrix(n);
 
@@ -145,7 +173,12 @@ void givensQR(Matrix& Q, Matrix& R, int n) {
     }
 }
 
-
+/// <summary>
+/// Находит сдвиг Уилкинсона для ускорения сходимость QR алгоритма
+/// </summary>
+/// <param name="A">Матрица</param>
+/// <param name="m">Размерность</param>
+/// <returns></returns>
 double wilkinsonShift(Matrix& A, int m) {
     double d = (A.numbersMatrix[m - 2][m - 2] - A.numbersMatrix[m - 1][m - 1]) / 2.0;
     double b = A.numbersMatrix[m - 1][m - 2];
@@ -156,7 +189,14 @@ double wilkinsonShift(Matrix& A, int m) {
         sign * b * b / (abs(d) + sqrt(d * d + b * b));
 }
 
-
+/// <summary>
+/// Находит все собственные числа матрицы QR алгоритмом
+/// </summary>
+/// <param name="A">Матрица</param>
+/// <param name="n">Размерность</param>
+/// <param name="tol">Точность</param>
+/// <param name="max_iter">Максимальное число итераций</param>
+/// <returns></returns>
 vector<double> QR_algorithm(Matrix A, int n, double tol, int max_iter = 100000) {
     Matrix H = toHessenberg(A, n);
     vector<double> eigenvalues;
