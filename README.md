@@ -39,5 +39,3 @@
 
 **[https://github.com/ShegemArt/Matrix]**
 
-Подключена как **git submodule**:
-
