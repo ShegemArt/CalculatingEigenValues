@@ -39,3 +39,36 @@
 
 # debug information files
 *.dwo
+
+# Visual Studio workspace
+.vs/
+
+# User-specific project files
+*.vcxproj.user
+*.suo
+
+# Build directories
+x64/
+Debug/
+Release/
+
+# IntelliSense / compiler cache
+*.log
+*.idb
+*.ipch
+*.tlog/
+*.ifc*
+*.module.json
+*.recipe
+
+# Backup / layout files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# macOS
+*.DS_Store
+
+# Windows
+Thumbs.db

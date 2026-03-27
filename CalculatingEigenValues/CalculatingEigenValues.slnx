@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="CalculatingEigenValues.vcxproj" Id="6e7d92ce-0d65-4401-9a02-bbeb2e875594" />
+</Solution>
